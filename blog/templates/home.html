@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="hero-wrap" style="background-image: url('../static/imgs/bg_21.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-start"
+            data-scrollax-parent="true">
+            
+            <div class="col-md-12">
+                <h1 class="mb-4 mb-md-0 blog1">Rita's <span class="blog"> Blogs </span></h1>
+            </div>
+        </div>
+    </div>
+</div> <br>
+
+{% for post in posts.items %}
+<!-- <article class="media content-section"> -->
+    <!-- <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pic/' + post.author.image) }}"
+        alt="">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2"
+                href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+            <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        </div>
+        <h4><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a> </h4>
+        <p class="article-content">{{ post.content }}</p>
+    </div> -->
+
+    <article class="blog-card alt">
+        <div class="meta">
+            <div class="photo"
+                style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"></div>
+            <ul class="details">
+                <li class="author"><a href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a></li>
+                <li class="date">{{ post.date_posted.strftime('%Y-%m-%d') }}</li>
+            </ul>
+        </div>
+        
+        <div class="description">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pic/' + post.author.image) }}"
+                alt="">
+            <div class="article-metadata">
+                <a class="mr-2"
+                    href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h1><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a> </h4>
+            <p>interested? Want to find out more right! Then click</p>
+            <p class="read-more">
+                <a href="{{ url_for('posts.post', post_id=post.id) }}">Read More</a>
+            </p>
+        </div>
+    </article>
+
+
+
+
+<!-- </article> -->
+{% endfor %}
+
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+{% if posts.page == page_num %}
+<a class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+{% else %}
+<a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+
+{% endblock content %}

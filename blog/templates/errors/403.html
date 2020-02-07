@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="notfound content-session">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>403</h1>
+        </div>
+        <h2>Oops! You Don't have Permission to do that.</h2>
+        <p>Sorry but you are not authorized, Please check your account and try again.</p>
+        <a href="{{ url_for('main.home') }}">Go To Homepage</a>
+    </div>
+</div>
+{% endblock content %}

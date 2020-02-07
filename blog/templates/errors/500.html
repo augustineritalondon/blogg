@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="notfound content-session">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>500</h1>
+        </div>
+        <h2>Oops! Something Went Wrong.</h2>
+        <p>Sorry but we are experiencing some troubles on our end, Please try again later.</p>
+        <a href="{{ url_for('main.home') }}">Go To Homepage</a>
+    </div>
+</div>
+{% endblock content %}
